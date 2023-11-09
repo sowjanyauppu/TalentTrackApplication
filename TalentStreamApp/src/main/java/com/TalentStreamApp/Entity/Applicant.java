@@ -1,5 +1,7 @@
 package com.TalentStreamApp.Entity;
 
+import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,8 @@ private String name;
 private String email;
 private String mobilenumber;
 private String password;
+@Column(nullable=false)
+private String roles="ROLE_JOBAPPLICANT"; 
 public int getId() {
 	return id;
 }

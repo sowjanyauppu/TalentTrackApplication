@@ -14,7 +14,7 @@ public interface ApplicantRegisterRepository extends JpaRepository<Applicant, In
 		boolean existsByEmail(String email);
 		//Applicant findById(Long id);
 
-		//Applicant getApplicantById(long applicantid);
+		Applicant getApplicantById(long applicantid);
 
 	 		
 
