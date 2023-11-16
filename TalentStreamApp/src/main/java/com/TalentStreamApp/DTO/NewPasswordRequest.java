@@ -1,4 +1,4 @@
-package com.TalentStreamApp.Entity;
+package com.TalentStreamApp.DTO;
 
 public class NewPasswordRequest {
 	private String newPassword;

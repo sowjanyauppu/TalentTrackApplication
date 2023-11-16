@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.TalentStreamApp.DTO.NewPasswordRequest;
+import com.TalentStreamApp.DTO.OtpVerification;
 import com.TalentStreamApp.Entity.Applicant;
-import com.TalentStreamApp.Entity.NewPasswordRequest;
-import com.TalentStreamApp.Entity.OtpVerification;
 import com.TalentStreamApp.Repository.ApplicantRegisterRepository;
 import com.TalentStreamApp.Service.ApplicantRegisterServiceInterface;
 import com.TalentStreamApp.ServiceImpl.ApplicantRegisterImpl;
@@ -39,7 +39,7 @@ public class ApplicantRegisterController {
 	
 	@Autowired
 	private OtpService otpService;
-	private Map<String, Boolean> otpVerificationMap = new HashMap<>();
+	//private Map<String, Boolean> otpVerificationMap = new HashMap<>();
 	
 	@PostMapping("/applicant/sendotp")
     public ResponseEntity<String> sendOtp(@RequestBody Applicant  request) {
@@ -48,7 +48,7 @@ public class ApplicantRegisterController {
         if (applicant == null) {     
             String otp = otpService.generateOtp(userEmail);
          	            emailService.sendOtpEmail(userEmail, otp);
- 	            otpVerificationMap.put(userEmail, true);
+ 	        
  	            return ResponseEntity.ok("OTP sent to your email.");
         }
 
@@ -64,12 +64,12 @@ public class ApplicantRegisterController {
         if (applicant != null) {     
             String otp = otpService.generateOtp(userEmail);
          	            emailService.sendOtpEmail(userEmail, otp);
- 	            otpVerificationMap.put(userEmail, true);
+ 	        
  	            System.out.println(otp);
  	            return ResponseEntity.ok("OTP sent successfully");
         }
         else {
-        	 return ResponseEntity.badRequest().body("Email is not  registered."); 
+        	 return ResponseEntity.badRequest().body("Applicant Email is not  registered."); 
         } 
     }
 
@@ -80,7 +80,7 @@ public class ApplicantRegisterController {
 	    ) {
 	        String otp=verificationRequest.getOtp();
 	        String email=verificationRequest.getEmail();
-	        System.out.println(otp+email);
+	       // System.out.println(otp+email);
 
 	        if (otpService.validateOtp(email, otp)) {
 	            return ResponseEntity.ok("OTP verified successfully");
