@@ -36,12 +36,12 @@ public class Recruiter {
 	    @OneToOne(mappedBy = "jobRecruiter")
 	    private CompanyProfile companyProfile;
 	    
-	/*    @OneToMany( cascade = CascadeType.ALL)
+	  @OneToMany( cascade = CascadeType.ALL)
 	    private List<Job> jobs;
 	    
-	    @OneToMany( cascade = CascadeType.ALL)
-	    private List<TeamMember> teamMembers;  */
-	    
+	/*    @OneToMany( cascade = CascadeType.ALL)
+	    private List<TeamMember> teamMembers;  
+	    */
 
 	    public Long getRecruiterId() {
 			return recruiterId;
